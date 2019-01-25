@@ -52,5 +52,16 @@ namespace Tests
       var result = Calc.Calculate(value);
       Assert.IsTrue(result.result == 1, $"{value} should be 1");
     }
-  }
+
+        [DataTestMethod]
+        [DataRow("2* 5-2")]
+        [DataRow("14- 3*2")]
+        [DataRow(" 4 + 3*2 -2 ")]
+        [DataRow("    6*2 -4")]
+        public void DoMixedExpression(string value)
+        {
+            var result = Calc.Calculate(value);
+            Assert.IsTrue(result.result == 8, $"{value} should be 8");
+        }
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -78,19 +79,20 @@ namespace debugws3
       //Casting Arrays to the correct data type
       int[] numbersToBeCalculated = Array.ConvertAll(numArray, int.Parse);
       char[] operations = Array.ConvertAll(opArray, char.Parse);
-
-      //Checking if math operators are equal or more than the numbers to be calculated
-      if (operations.Length >= numbersToBeCalculated.Length)
+            
+            //Checking if math operators are equal or more than the numbers to be calculated
+            if (operations.Length >= numbersToBeCalculated.Length)
       {
         return new Result(0, "Wrong entry. Try again using one or more operations");
       }
-
-      double result = numbersToBeCalculated[0];
-
+           
+            double result = numbersToBeCalculated[0];
+      /*
       var j = 0;
       for (var i = 1; i < numbersToBeCalculated.Length; i++)
       {
-        switch (operations[j])
+               
+                switch (operations[j])
         {
           case '+':
             {
@@ -117,11 +119,18 @@ namespace debugws3
         }
         j++;
       }
+      */
+            result = Convert.ToDouble(new System.Data.DataTable().Compute(input, null));
 
-      return new Result(result, "");
+            return new Result(result, "");
     }
 
-    public static void ExitAndThankYouMessage()
+        private static double EvaluatePrecedence()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void ExitAndThankYouMessage()
     {
       Console.Clear();
       Console.WriteLine("\n\n\n\n");
